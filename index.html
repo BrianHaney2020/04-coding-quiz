@@ -9,13 +9,25 @@
   </head>
   <body>
     <div class="card">
+      
       <header>
-        <div id = "header-left">view</div>
+        <div id = "header-left"><a href="highScores.html">View High Scores</a></div>
         <div id = "header-right">timer</div>
-
       </header>
-      <h1>High Scores</h1>
-      <ol id="score-list"></ol>
+
+      <div class="tab">
+        <h1>Coding Quiz</h1>
+        <h2></h2>
+        <button class="responseButton" id="start-quiz-button">Start Quiz</button>
+      </div>
+   
+      <form>
+        <label for="initials">Enter your initials: </label>
+        <input type="text" placeholder="my initials" name="initials" id="initials" />
+        <button class = "responseButton" id="submit-button">Submit</button>
+        <button class = "responseButton" id= "noSubmit-button">Cancel</button>
+      </form>
+    </div>
       <footer></footer>
 
     </div>
