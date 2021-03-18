@@ -1,5 +1,5 @@
 var highScores = JSON.parse(localStorage.getItem("HighScores"));
-//var highScores = [{score: "25", initials: "dfh"},{score: "21", initials: "hpt"},{score: "20", initials: "wsb"}];
+var highScores = [{score: "25", initials: "dfh"},{score: "21", initials: "hpt"},{score: "20", initials: "wsb"}];
 var currentScore = 35;
 var scoreList = document.querySelector("#score-list");
 var pageBody = document.querySelector("body");
