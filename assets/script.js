@@ -64,10 +64,13 @@ var startQuizButton = document.querySelector("#start-quiz-button");
 var submitButton = document.querySelector("#submit-button");
 var playAgainButton = document.querySelector("#play-again-button");
 var initials = document.querySelector("#initials");
+var initialsPrompt = document.querySelector("#initials-prompt");
 //var initialsInput = document.querySelector("#initialsInput");
 
 var currentScore = 0;
 var currentQuestion = 0;
+var secondsLeft = 10;
+var completed = false;
 
 //this function displays a question with the choices
 function showQuestion(index){
@@ -98,7 +101,55 @@ function showQuestion(index){
 
 
 //console.log(questionList[currentQuestion]);
-showQuestion(0);
+//showQuestion(0);
+
+function pageLoad(){
+//this function runs when the page loads.
+    h1Text.text = "Coding Quiz";
+    h2Text.text = "";
+    choices.innerHTML = "";
+    //startQuizButton.setAttribute("style", "display: none");
+    initials.setAttribute("style", "display: none");
+    submitButton.setAttribute("style", "display: none");
+    initialsPrompt.setAttribute("style", "display: none");
+} 
+
+pageLoad();
+
+
+startQuizButton.addEventListener("click",function(event){
+    completed = false;
+    startQuizButton.setAttribute("style", "display:none");
+    currentScore = 0;
+    console.log("got to set time");
+    setTime();
+    showQuestion(currentScore);
+
+
+})
+
+function setTime() {
+    // Sets interval in variable
+    var timerInterval = setInterval(function() {
+      
+      headerRight.innerHTML = "Timer:" + secondsLeft;
+      secondsLeft--;
+        console.log(secondsLeft+" "+completed);
+    if (completed){
+        clearInterval(timerInterval);
+        headerRight.innerHTML = "Timer: --";
+    };
+      if(secondsLeft === 0) {
+        // Stops execution of action at set interval
+        clearInterval(timerInterval);
+        // Calls function to create and append image
+        quizOver("Time's Up!");
+      }
+  
+    }, 1000);
+  }
+
+
 
 //When one of the choices is clicked, this function will check to see if the choice
 //matches the correct answer.  If true, then the function increments the currentScore
@@ -118,7 +169,8 @@ choices.addEventListener("click", function(event){
         console.log("current Score" + currentScore);
         currentQuestion++;
         if (currentQuestion >= questionList.length) {
-            quizOver();
+            completed = true;
+            quizOver("All Done!");
             currentQuestion = 0;
         } else {
             showQuestion(currentQuestion);
@@ -127,10 +179,13 @@ choices.addEventListener("click", function(event){
     }
 });
 
-function quizOver() {
-    h1Text.innerHTML = "All Done";
+function quizOver(message) {
+    h1Text.innerHTML = message;
     h2Text.innerHTML = "Your score is " + currentScore;
     choices.innerHTML = ""; 
+    initialsPrompt.setAttribute("style", "display: block");
+    initials.setAttribute("style","display: block");
+    submitButton.setAttribute("style","display: block");
 };
 
 submitButton.addEventListener("click", function(event){
@@ -145,6 +200,7 @@ submitButton.addEventListener("click", function(event){
     } else {
         addNewScore(scoreSubmitted);
         console.log("reached line 147");
+        window.location.href = "./highScores.html";
     }
 });
 
@@ -156,7 +212,7 @@ function addNewScore(myScoreSubmitted){
      //the highScores array is ordered from highest to lowest.
      var highScores = JSON.parse(localStorage.getItem("HighScores"));
      console.log(highScores);
-     console.log(highScores.length);
+     //console.log(highScores.length);
      if ((!highScores)||(highScores.length == 0)) {
         highScores = [];
         highScores.push(myScoreSubmitted);
