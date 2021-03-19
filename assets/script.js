@@ -64,12 +64,12 @@ var startQuizButton = document.querySelector("#start-quiz-button");
 var submitButton = document.querySelector("#submit-button");
 var playAgainButton = document.querySelector("#play-again-button");
 var initials = document.querySelector("#initials");
-var initialsInput = document.querySelector("#initialsInput");
+//var initialsInput = document.querySelector("#initialsInput");
 
 var currentScore = 0;
 var currentQuestion = 0;
 
-
+//this function displays a question with the choices
 function showQuestion(index){
     var myText = questionList[index].text;
     var myChoices = questionList[index].choices;
@@ -83,41 +83,101 @@ function showQuestion(index){
 
     for (var i = 0; i < myChoices.length; i++){
     
-    //var individualScore = highScores[i];
-    var button = document.createElement("button");
-    //console.log(text);
-    button.textContent = myChoices[i];
-    //console.log(li.textContent);
-    button.setAttribute("data-index",i);
-    button.setAttribute("class","choiceButton");
-    choices.appendChild(button);
-};
+        //var individualScore = highScores[i];
+        var button = document.createElement("button");
+        //console.log(text);
+        button.textContent = myChoices[i];
+        //console.log(li.textContent);
+        button.setAttribute("data-index",i);
+        button.setAttribute("class","choiceButton");
+        choices.appendChild(button);
+    };
 }
 
 
 
-console.log(questionList[currentQuestion]);
+
+//console.log(questionList[currentQuestion]);
 showQuestion(0);
 
+//When one of the choices is clicked, this function will check to see if the choice
+//matches the correct answer.  If true, then the function increments the currentScore
+//by 1.
 choices.addEventListener("click", function(event){
    var element = event.target;
-   console.log(element);
+   //console.log(element);
     if (element.matches(".choiceButton")) {
-        console.log(element.dataset.index +" correct answer is "+questionList[currentQuestion].correctAnswer);
+        //console.log(element.dataset.index +" correct answer is "+questionList[currentQuestion].correctAnswer);
         if (element.dataset.index == questionList[currentQuestion].correctAnswer){
-        currentScore++;
-        console.log("CORRECT");
-        headerRight.text = currentScore;       
+            currentScore++;
+            console.log("CORRECT");
+            headerRight.text = currentScore;       
         } else {
             console.log("incorrect");
         };
+        console.log("current Score" + currentScore);
         currentQuestion++;
-        showQuestion(currentQuestion);
+        if (currentQuestion >= questionList.length) {
+            quizOver();
+            currentQuestion = 0;
+        } else {
+            showQuestion(currentQuestion);
         }
-    });
+        //console.log(currentQuestion + " " + questionList.length);
+    }
+});
 
+function quizOver() {
+    h1Text.innerHTML = "All Done";
+    h2Text.innerHTML = "Your score is " + currentScore;
+    choices.innerHTML = ""; 
+};
 
+submitButton.addEventListener("click", function(event){
+    event.preventDefault();
+    //alertBox("alert");
+    var userInitials = initials.value.trim();
+    var scoreSubmitted = {score:currentScore, initials:userInitials};
+    //var scoreSubmitted = {score: 7, initials: "luk"};
+    console.log(scoreSubmitted);
+    if (!userInitials) {
+        alert("Enter Initials");
+    } else {
+        addNewScore(scoreSubmitted);
+        console.log("reached line 147");
+    }
+});
 
+//addNewScore({score:6, initials: "PLL"});
+//addNewScore({score:0, initials: "blu"});
+
+function addNewScore(myScoreSubmitted){
+     //this function adds the new score to the highScores array.
+     //the highScores array is ordered from highest to lowest.
+     var highScores = JSON.parse(localStorage.getItem("HighScores"));
+     console.log(highScores);
+     console.log(highScores.length);
+     if ((!highScores)||(highScores.length == 0)) {
+        highScores = [];
+        highScores.push(myScoreSubmitted);
+    } else{
+            if (myScoreSubmitted.score >= highScores[0].score){
+                highScores.unshift(myScoreSubmitted);
+            } else if (myScoreSubmitted.score < highScores[highScores.length-1].score){
+                highScores.push(myScoreSubmitted);
+            } else {
+                for (var counter = 0; counter < highScores.length; counter++){
+                    console.log(counter + " " + JSON.stringify(highScores[counter]));
+                    if (myScoreSubmitted.score >= highScores[counter].score){
+                        highScores.splice(counter,0,myScoreSubmitted);
+                        break;
+                    };
+                };
+            };
+        }
+    localStorage.setItem("HighScores", JSON.stringify(highScores));
+    return;
+ }
 
 /*viewHighScoresButton.addEventListener("click", function() {
     
