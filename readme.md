@@ -10,3 +10,6 @@ highScores.html shows the high scores recorded in local storage.
 The "go back" button takes the user back to index.html.
 The "clear scores" button clears out all the scores in local storage.
 
+Code repository
+https://github.com/BrianHaney2020/04-coding-quiz.git
+
