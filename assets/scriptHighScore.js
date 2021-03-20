@@ -83,7 +83,7 @@ function renderHighScores(){
         for (var i = 0; i < highScores.length; i++){
             var individualScore = highScores[i];
             var li = document.createElement("li");
-            li.textContent = individualScore.initials + " " + individualScore.score;
+            li.textContent = (i+1)+"."+individualScore.initials + " " + individualScore.score;
             //console.log(li.textContent);
             li.setAttribute("data-index",i);
             li.setAttribute("class","high-score-list-item");

@@ -4,23 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/style.css" />
     <title>Data Attributes</title>
   </head>
   <body>
-    <div class="card">
-      
-      <header>
-        <div id = "header-left"><a href="highScores.html">View High Scores</a></div>
-        <div id = "header-right">timer</div>
-      </header>
+    <div class="container.md">
+      <div class="container-fluid">
+        <div class = "row">
+          <div class = "col-6" id = "header-left"><a href="highScores.html">View High Scores</a></div>
+          <div class = "col-3"></div>
+          <div class = "col-3" id = "header-right">timer</div>
+        </div>
+      </div>  
+    </div>
 
-      <div class="tab">
-        <h1>Coding Quiz</h1>
-        <h2></h2>
+    <div class="card">
+      <h1>Coding Quiz</h1>
+      <div class="card-body">
+        <h2 class="card-text"></h2>
         <ol id="choices"></ol>
-        <button class="responseButton" id="start-quiz-button">Start Quiz</button>
+        <button type="button" class="btn btn-primary" id="start-quiz-button">Start Quiz</button>
       </div>
+    </div>
    
       <form>
         <label for="initials" id="initials-prompt">Enter your initials: </label>
@@ -30,7 +36,7 @@
       </form>
       <button class = "responseButton" id="submit-button">Submit</button>
     </div>
-      <footer></footer>
+      <footer id = "check-message"></footer>
 
     </div>
     

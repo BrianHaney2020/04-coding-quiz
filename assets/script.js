@@ -1,9 +1,38 @@
 //define the question set
 var questionList = [];
+var letters = "abcdefgh".split("");
 
+questionText = 'test';
+questionChoices = ['<script>', '<js>','<javascript>','<scripting>'];
+questionCorrectAnswer = 3;
+question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
+questionList.push(question);
+
+questionText = " asfhahg";
+questionChoices = ['alert("Hello World");', 'alertBox("Hello World");','msg("Hello World");','msgBox("Hello World");'];
+questionCorrectAnswer = 0;
+question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
+questionList.push(question);
+
+questionText = 'How do you write "Hello World" in an alert box?';
+questionChoices = ['alert("Hello World");', 'alertBox("Hello World");','msg("Hello World");','msgBox("Hello World");'];
+questionCorrectAnswer = 0;
+question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
+questionList.push(question);
+
+questionText = 'How do you write "Hello World" in an alert box?';
+questionChoices = ['alert("Hello World");', 'alertBox("Hello World");','msg("Hello World");','msgBox("Hello World");'];
+questionCorrectAnswer = 0;
+question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
+questionList.push(question);
 //question4
+questionText = 'How do you write "Hello World" in an alert box?';
+questionChoices = ['alert("Hello World");', 'alertBox("Hello World");','msg("Hello World");','msgBox("Hello World");'];
+questionCorrectAnswer = 0;
+question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
+questionList.push(question);
 
-var questionText = "The external JavaScript file must contain the <script> tag.";
+var questionText = "The external JavaScript file must contain the \<script\> tag.";
 var questionChoices = ["True","False"];
 var questionCorrectAnswer = 1;
 var question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
@@ -65,7 +94,7 @@ var submitButton = document.querySelector("#submit-button");
 var playAgainButton = document.querySelector("#play-again-button");
 var initials = document.querySelector("#initials");
 var initialsPrompt = document.querySelector("#initials-prompt");
-//var initialsInput = document.querySelector("#initialsInput");
+var checkMessage = document.querySelector("#check-message");
 
 var currentScore = 0;
 var currentQuestion = 0;
@@ -89,7 +118,7 @@ function showQuestion(index){
         //var individualScore = highScores[i];
         var button = document.createElement("button");
         //console.log(text);
-        button.textContent = myChoices[i];
+        button.textContent = letters[i]+". "+ myChoices[i];
         //console.log(li.textContent);
         button.setAttribute("data-index",i);
         button.setAttribute("class","choiceButton");
@@ -122,18 +151,16 @@ startQuizButton.addEventListener("click",function(event){
     startQuizButton.setAttribute("style", "display:none");
     currentScore = 0;
     console.log("got to set time");
+    //headerRight.innerHTML = "Timer:" + secondsLeft;
     setTime();
     showQuestion(currentScore);
-
-
 })
 
 function setTime() {
-    // Sets interval in variable
+    // Sets interva headerRight.innerHTML = "Timer:" + secondsLeft;l in variable
     var timerInterval = setInterval(function() {
-      
-      headerRight.innerHTML = "Timer:" + secondsLeft;
       secondsLeft--;
+     headerRight.innerHTML = "Timer: " + secondsLeft;
         console.log(secondsLeft+" "+completed);
     if (completed){
         clearInterval(timerInterval);
@@ -159,14 +186,20 @@ choices.addEventListener("click", function(event){
    //console.log(element);
     if (element.matches(".choiceButton")) {
         //console.log(element.dataset.index +" correct answer is "+questionList[currentQuestion].correctAnswer);
+        var checkMessageText = "na";
         if (element.dataset.index == questionList[currentQuestion].correctAnswer){
             currentScore++;
-            console.log("CORRECT");
-            headerRight.text = currentScore;       
+            checkMessageText = "Correct!";
+            //headerRight.text = currentScore;       
         } else {
-            console.log("incorrect");
+            var checkMessageText = "Incorrect.  The correct answer was: ";
+            var myCorrectAnswer = questionList[currentQuestion].correctAnswer;
+            var myCorrectAnswerLetter = letters[myCorrectAnswer];
+            checkMessageText += myCorrectAnswerLetter + ".";
         };
-        console.log("current Score" + currentScore);
+        console.log(checkMessageText);
+        checkMessage.innerHTML=checkMessageText;
+        window.setTimeout(function(){checkMessage.innerHTML="";},2000);
         currentQuestion++;
         if (currentQuestion >= questionList.length) {
             completed = true;
@@ -199,7 +232,6 @@ submitButton.addEventListener("click", function(event){
         alert("Enter Initials");
     } else {
         addNewScore(scoreSubmitted);
-        console.log("reached line 147");
         window.location.href = "./highScores.html";
     }
 });
