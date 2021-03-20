@@ -2,70 +2,101 @@
 var questionList = [];
 var letters = "abcdefgh".split("");
 
-questionText = 'test';
-questionChoices = ['<script>', '<js>','<javascript>','<scripting>'];
+
+function addQuestion(){
+    question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
+    questionList.push(question); 
+};
+
+//question 1
+questionText = 'What will the following code return: Boolean(10>9)';
+questionChoices = ['true', 'false','NaN'];
+questionCorrectAnswer = 0;
+addQuestion();
+
+//question2
+questionText = 'Which operator is used to assign a value to a variable?';
+questionChoices = ['-','*', 'x','='];
 questionCorrectAnswer = 3;
-question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
+addQuestion();
 
-questionText = " asfhahg";
-questionChoices = ['alert("Hello World");', 'alertBox("Hello World");','msg("Hello World");','msgBox("Hello World");'];
+//question 3
+questionText = "How do you declare a Javascript variable?";
+questionChoices = ['variable carName', 'var carName','v carName'];
+questionCorrectAnswer = 1;
+addQuestion();
+
+//4
+questionText = 'Which event occurs when the user clicks on an HTML element?';
+questionChoices = ['onclick', 'onchange','onmouseover','onmouseclick'];
 questionCorrectAnswer = 0;
-question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
+addQuestion();
 
+//5
+questionText = "How can you detect the client's browser name?";
+questionChoices = ['navigator.appName','client.navName', 'browser.name'];
+questionCorrectAnswer = 0;
+addQuestion();
+
+//6
 questionText = 'How do you write "Hello World" in an alert box?';
 questionChoices = ['alert("Hello World");', 'alertBox("Hello World");','msg("Hello World");','msgBox("Hello World");'];
 questionCorrectAnswer = 0;
-question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
+addQuestion();
 
-questionText = 'How do you write "Hello World" in an alert box?';
-questionChoices = ['alert("Hello World");', 'alertBox("Hello World");','msg("Hello World");','msgBox("Hello World");'];
-questionCorrectAnswer = 0;
-question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
-//question4
-questionText = 'How do you write "Hello World" in an alert box?';
-questionChoices = ['alert("Hello World");', 'alertBox("Hello World");','msg("Hello World");','msgBox("Hello World");'];
-questionCorrectAnswer = 0;
-question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
-
-var questionText = "The external JavaScript file must contain the \<script\> tag.";
+//7
+var questionText = "The external JavaScript file must contain the &lt;script&gt; tag.";
 var questionChoices = ["True","False"];
 var questionCorrectAnswer = 1;
-var question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
+addQuestion();
 
-//question5
+//8
 questionText = 'How do you write "Hello World" in an alert box?';
 questionChoices = ['alert("Hello World");', 'alertBox("Hello World");','msg("Hello World");','msgBox("Hello World");'];
 questionCorrectAnswer = 0;
-question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
+addQuestion();
 
-//question6
+//9
 questionText = 'How do you create a function in JavaScript?';
 questionChoices = ['function = myFunction()', 'function:myFunction()','function myFunction()'];
 questionCorrectAnswer = 2;
-question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
+addQuestion();
 
-//question7
+//10
 questionText = 'How do you call a function named "myFunction"?';
 questionChoices = ['myFunction()', 'call function myFunction()','call myFunction()'];
 questionCorrectAnswer = 0;
-question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
+addQuestion();
 
-//question8
+//11
 questionText = 'How to write an IF statement in JavaScript?';
 questionChoices = ['if i = 5 then', 'if i == 5 then','if (i == 5)','if i = 5'];
 questionCorrectAnswer = 2;
-question = {text: questionText, choices: questionChoices, correctAnswer: questionCorrectAnswer};
-questionList.push(question);
+addQuestion();
 
+//12
+questionText = 'What is the correct syntax for opening a new window called "w2"?';
+questionChoices = ['w2 = window.new("http://www.w3schoosl.com");', 'w2=window.open("http://www.w2schools.com");'];
+questionCorrectAnswer = 1;
+addQuestion();
+
+//13
+questionText = 'How do you find the number with the highest value of x and y?';
+questionChoices = ['top(x,y)', 'Math.ceil(x,y)','ceil(x,y)','Math.max(x,y)'];
+questionCorrectAnswer = 3;
+addQuestion();
+
+//14
+questionText = 'How do you round the number 7.25 to the nearest integer?';
+questionChoices = ['Math.rnd(7.25)','rnd(7.25)','Math.round(7.25)','round(7.25)'];
+questionCorrectAnswer = 2;
+addQuestion();
+
+//15
+questionText = 'What is the correct way to write a JavaScript array?';
+questionChoices = ['var colors = ["red", "green", "blue"]  ','var colors = "red", "green", "blue"','var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")','var colors = (1:"red", 2:"green", 3:"blue")'];
+questionCorrectAnswer = 2;
+addQuestion();
 
 //check the question list in the console log
 /*for (var i=0; i<questionList.length; i++) {
