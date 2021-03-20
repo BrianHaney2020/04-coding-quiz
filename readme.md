@@ -16,6 +16,8 @@ https://github.com/BrianHaney2020/04-coding-quiz.git
 Link to deployed page
 https://brianhaney2020.github.io/04-coding-quiz/index.html
 
+screen snips of deployed page
+
 ![image](https://user-images.githubusercontent.com/76619826/111882926-ae71ff80-898e-11eb-9c25-01abf46d307a.png)
 
 
