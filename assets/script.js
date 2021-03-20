@@ -100,7 +100,7 @@ var checkMessage = document.querySelector("#check-message");
 
 var currentScore = 0;
 var currentQuestion = 0;
-var secondsLeft = 1000;
+var secondsLeft = 30;
 var completed = false;
 
 //this function displays a question with the choices

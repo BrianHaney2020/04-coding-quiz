@@ -67,7 +67,7 @@ button {
   transition-duration: 0.15s;
   transition-property: background-color;
   transition-timing-function: linear;
-  margin: 0.6em auto;
+  margin: 10px 10px;
   display: block;
 }
 
