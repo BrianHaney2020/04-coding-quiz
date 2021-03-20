@@ -11,6 +11,11 @@ body {
   color: #001b44;
 }
 
+h1{
+  padding: 0px 0px 0px 30px;
+  font-size: 36px;
+}
+
 h2,
 h3 {
   font-size: 18px;
@@ -27,6 +32,8 @@ header {
 #header-left{
   display: inline;
   margin: 20px 20px;
+  color: rgb(10, 185, 185);
+  font-size: 20px;
 }
 
 #header-right{
@@ -34,6 +41,8 @@ header {
   display: inline;
   right: 0;
   margin: 20px 20px;
+  color: black;
+  font-size: 20px;
 }
 
 
@@ -62,9 +71,23 @@ button {
   display: block;
 }
 
+.card-body {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: flex-start;
+}
+
+#choices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .choiceButton{
   font-size: 16px;
-  padding: 10px 10px;
+  padding: 10px 10px 10px 10px;
+  
 }
 
 .responseButton{

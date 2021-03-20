@@ -86,7 +86,9 @@ var testScoreSubmitted = {score: "41", initials: "poa"};
 var headerLeft = document.querySelector("#header-left");
 var headerRight = document.querySelector("#header-right");
 var h1Text = document.querySelector("h1");
-var h2Text = document.querySelector("h2");
+var h2QuestionNumber = document.querySelector("#question-number");
+var h2QuestionText = document.querySelector("#question-text");
+var h2ScoreText = document.querySelector("#score-text");
 var choices = document.querySelector("#choices");
 
 var startQuizButton = document.querySelector("#start-quiz-button");
@@ -98,7 +100,7 @@ var checkMessage = document.querySelector("#check-message");
 
 var currentScore = 0;
 var currentQuestion = 0;
-var secondsLeft = 10;
+var secondsLeft = 1000;
 var completed = false;
 
 //this function displays a question with the choices
@@ -110,7 +112,8 @@ function showQuestion(index){
     choices.innerHTML = ""; 
     //console.log("got here");
     h1Text.innerHTML = "";
-    h2Text.innerHTML = myText;
+    h2QuestionNumber.innerHTML = "Question #"+(index+1);
+    h2QuestionText.innerHTML = myText;
     //console.log(questionList[1]);
 
     for (var i = 0; i < myChoices.length; i++){
@@ -135,7 +138,8 @@ function showQuestion(index){
 function pageLoad(){
 //this function runs when the page loads.
     h1Text.text = "Coding Quiz";
-    h2Text.text = "";
+    h2QuestionNumber.text = "";
+    h2QuestionText.text= "";
     choices.innerHTML = "";
     //startQuizButton.setAttribute("style", "display: none");
     initials.setAttribute("style", "display: none");
@@ -214,8 +218,10 @@ choices.addEventListener("click", function(event){
 
 function quizOver(message) {
     h1Text.innerHTML = message;
-    h2Text.innerHTML = "Your score is " + currentScore;
+    h2ScoreText.innerHTML = "Your score is " + currentScore;
     choices.innerHTML = ""; 
+    h2QuestionNumber.innerHTML="";
+    h2QuestionText.innerHTML="";
     initialsPrompt.setAttribute("style", "display: block");
     initials.setAttribute("style","display: block");
     submitButton.setAttribute("style","display: block");
